@@ -1,11 +1,11 @@
 <template>
   <div class="app">
-    <main-page-for-pc />
+    <main-page />
   </div>
 </template>
 
 <script lang="ts" setup>
-import MainPageForPc from './views/MainPageForPc.vue'
+import MainPage from './views/MainPage.vue'
 </script>
 
 <style lang="less">

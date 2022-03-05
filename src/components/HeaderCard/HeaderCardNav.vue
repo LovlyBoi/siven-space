@@ -2,12 +2,12 @@
   <nav class="header-card-nav">
     <a
       href="javascript:;"
-      v-for="(item, index) in navList"
+      v-for="item in navList"
       :key="item.title"
       :class="{
         active: curRoute === item.route,
       }"
-      @click="handleNavItemClick(item, index)"
+      @click="handleNavItemClick(item)"
     >
       {{ item.title }}
     </a>
@@ -37,8 +37,7 @@ withDefaults(defineProps<Props>(), {
   ],
 })
 
-const handleNavItemClick = (item: NavItem, index: number) => {
-  // console.log(item.route, '1111')
+const handleNavItemClick = (item: NavItem) => {
   curRoute.value = item.route
   router.push(item.route)
 }

@@ -6,7 +6,7 @@
     <router-link to="/">
       <div class="avatar">
         <img
-          src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2048&q=80"
+          :src="require('@/assets/img/avatar.jpg')"
           alt="头像"
         />
       </div>
@@ -133,9 +133,9 @@ const handleHeaderButtonClick = () => {
   }
 
   .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
     background-color: #999;
     overflow: hidden;
     margin-left: 10px;
