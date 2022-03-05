@@ -1,5 +1,8 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import { createPinia } from 'pinia'
 
-createApp(App).use(router).mount("#app");
+import '@/assets/css/index.less'
+
+createApp(App).use(router).use(createPinia()).mount('#app')
