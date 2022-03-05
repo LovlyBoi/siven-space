@@ -1,6 +1,7 @@
 <template>
   <header class="main-page">
     <header-card userName="浅秋细雨" intro="智文的个人主页"></header-card>
+    <router-view />
   </header>
 </template>
 

@@ -1,25 +1,35 @@
 <template>
   <div
     class="header-card white-card-shadow"
-    :style="{ width: expend ? '700px' : '400px' }"
+    :class="[!isSmallScreen && expend ? 'expened-card' : '', isSmallScreen ? 'full-width-card' : '']"
   >
-    <div class="avatar">
-      <!-- <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2048&q=80" alt="头像"> -->
-    </div>
+    <router-link to="/">
+      <div class="avatar">
+        <img
+          src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2048&q=80"
+          alt="头像"
+        />
+      </div>
+    </router-link>
 
     <div class="user-info">
-      <h3 class="user-name">{{ userName }}</h3>
+      <router-link to="/">
+        <h3 class="user-name">{{ userName }}</h3>
+      </router-link>
       <h4 class="user-intro">{{ intro }}</h4>
     </div>
 
-    <keep-alive>
-      <transition name="fade">
-        <header-card-nav v-if="expend" />
-      </transition>
-    </keep-alive>
+    <transition name="fade">
+      <header-card-nav v-if="expend" />
+    </transition>
 
-    <div class="header-button">
-      <input type="checkbox" id="hidden-extend-trigger" v-model="expend" />
+    <div class="header-button" @click="handleHeaderButtonClick">
+      <input
+        type="checkbox"
+        id="hidden-extend-trigger"
+        v-model="expend"
+        :disabled="isSmallScreen"
+      />
       <label for="hidden-extend-trigger" v-if="!expend">
         <div class="button-extend-wrapper">
           <div></div>
@@ -40,8 +50,9 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
 import HeaderCardNav from './HeaderCardNav.vue'
+import { isSmallScreen } from '@/utils/clientWidth'
 
-const expend = ref(true)
+const expend = ref(false)
 
 defineProps({
   userName: {
@@ -53,20 +64,73 @@ defineProps({
     default: '',
   },
 })
+
+const handleHeaderButtonClick = () => {
+  if (!isSmallScreen.value) {
+    return
+  } else {
+    console.log('弹出弹窗')
+  }
+}
 </script>
 
 <style lang="less" scoped>
+// 大屏幕
+@media only screen and (min-width: 638px) {
+  .button-extend-wrapper {
+    &:hover div {
+      &:first-child {
+        transform: rotate(-90deg) translateX(-6px);
+      }
+      &:last-child {
+        transform: rotate(-90deg) translateX(6px);
+      }
+    }
+  }
+
+  .button-shrink-wrapper {
+    div:first-child {
+      transform: translateY(5px) rotate(45deg);
+    }
+    div:last-child {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+    &:hover div {
+      &:first-child {
+        transform: translateY(5px);
+      }
+      &:last-child {
+        transform: translateY(-5px);
+      }
+    }
+  }
+}
+
+// 小屏幕
+// @media only screen and (max-width: 638px) {
+
+// }
+
 .header-card {
   background-color: #fff;
   border-radius: 8px;
-  // width: 400px;
+  width: 400px;
   height: 80px;
   padding: 15px 20px;
+  margin-bottom: 20px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   position: relative;
   transition: width 300ms;
+
+  &.expened-card {
+    width: 600px;
+  }
+
+  &.full-width-card {
+    width: 95vw;
+  }
 
   .avatar {
     width: 40px;
@@ -78,7 +142,7 @@ defineProps({
     // box-shadow: 9px 9px 18px #dbdbdb, -9px -9px 18px #ffffff;
 
     img {
-      width: 200%;
+      width: 100%;
     }
   }
 
@@ -121,34 +185,6 @@ defineProps({
         width: 20px;
         transition: all 100ms;
         box-shadow: 20px 20px 60px #2f3030, -20px -20px 60px #3f4042;
-      }
-    }
-
-    .button-extend-wrapper {
-      &:hover div {
-        &:first-child {
-          transform: rotate(-90deg) translateX(-6px);
-        }
-        &:last-child {
-          transform: rotate(-90deg) translateX(6px);
-        }
-      }
-    }
-
-    .button-shrink-wrapper {
-      div:first-child {
-        transform: translateY(5px) rotate(45deg);
-      }
-      div:last-child {
-        transform: translateY(-5px) rotate(-45deg);
-      }
-      &:hover div {
-        &:first-child {
-          transform: translateY(5px);
-        }
-        &:last-child {
-          transform: translateY(-5px);
-        }
       }
     }
   }

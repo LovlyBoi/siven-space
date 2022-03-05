@@ -5,4 +5,8 @@ import { createPinia } from 'pinia'
 
 import '@/assets/css/index.less'
 
-createApp(App).use(router).use(createPinia()).mount('#app')
+const app = createApp(App)
+
+app.use(createPinia())
+app.use(router)
+app.mount('#app')

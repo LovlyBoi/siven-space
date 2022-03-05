@@ -1,11 +1,4 @@
-import { defineStore } from 'pinia'
+import { storeToRefs } from 'pinia'
+import useHeaderStore from './HeaderStore'
 
-export default defineStore('mainStore', {
-  state: () => {
-    return {
-      counter: 0,
-    }
-  },
-  getters: {},
-  actions: {},
-})
+export { storeToRefs, useHeaderStore }

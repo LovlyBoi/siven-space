@@ -5,34 +5,42 @@
       v-for="(item, index) in navList"
       :key="item.title"
       :class="{
-        active: activeIndex === index,
+        active: curRoute === item.route,
       }"
       @click="handleNavItemClick(item, index)"
-      >{{ item.title }}</a
     >
+      {{ item.title }}
+    </a>
   </nav>
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, withDefaults } from 'vue'
+import { defineProps, withDefaults } from 'vue'
 import { useRouter } from 'vue-router'
+import { useHeaderStore, storeToRefs } from '@/store'
 
 import type { NavItem } from './type'
-
-const router = useRouter()
 
 interface Props {
   navList?: NavItem[]
 }
 
+const router = useRouter()
+
+const { curRoute } = storeToRefs(useHeaderStore())
+
 withDefaults(defineProps<Props>(), {
-  navList: () => [{ title: '全部' }, { title: '随笔' }, { title: '笔记' }],
+  navList: () => [
+    { title: '全部', route: '/all' },
+    { title: '随笔', route: '/essays' },
+    { title: '笔记', route: '/notes' },
+  ],
 })
 
-const activeIndex = ref(-1)
-
 const handleNavItemClick = (item: NavItem, index: number) => {
-  activeIndex.value = index
+  // console.log(item.route, '1111')
+  curRoute.value = item.route
+  router.push(item.route)
 }
 </script>
 

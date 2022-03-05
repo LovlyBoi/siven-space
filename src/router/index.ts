@@ -1,24 +1,42 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-// import HomeView from "../views/HomeView.vue";
-import MainPage from '../views/MainPageForPc.vue'
+import {useHeaderStore} from '../store'
+
+import AllView from '@/views/AllView.vue'
+import LifeEssaysView from '@/views/LifeEssaysView.vue'
+import NotesView from '@/views/NotesView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'main',
-    component: MainPage,
+    redirect: '/all'
   },
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  // },
+  {
+    path: '/all',
+    name: 'all',
+    component: AllView,
+  },
+  {
+    path: '/essays',
+    name: 'life-essays',
+    component: LifeEssaysView,
+  },
+  {
+    path: '/notes',
+    name: 'notes',
+    component: NotesView,
+  },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+})
+
+router.beforeEach((to) => {
+  const headerStore = useHeaderStore()
+  headerStore.$patch({
+    curRoute: to.path
+  })
 })
 
 export default router
