@@ -34,11 +34,12 @@ withDefaults(defineProps<Props>(), {
     { title: '全部', route: '/all' },
     { title: '随笔', route: '/essays' },
     { title: '笔记', route: '/notes' },
+    { title: '发布', route: '/edit' },
+    { title: '关于我', route: '/aboutme' },
   ],
 })
 
 const handleNavItemClick = (item: NavItem) => {
-  curRoute.value = item.route
   router.push(item.route)
 }
 </script>
@@ -46,6 +47,7 @@ const handleNavItemClick = (item: NavItem) => {
 <style lang="less" scoped>
 .header-card-nav {
   margin-left: 30px;
+  line-height: 50px;
 
   a {
     margin: 0 10px;

@@ -1,14 +1,14 @@
 <template>
   <div
     class="header-card white-card-shadow"
-    :class="[!isSmallScreen && expend ? 'expened-card' : '', isSmallScreen ? 'full-width-card' : '']"
+    :class="[
+      !isSmallScreen && expend ? 'expened-card' : '',
+      isSmallScreen ? 'full-width-card' : '',
+    ]"
   >
-    <router-link to="/">
+    <router-link to="/aboutme">
       <div class="avatar">
-        <img
-          :src="require('@/assets/img/avatar.jpg')"
-          alt="头像"
-        />
+        <img :src="require('@/assets/img/avatar.jpg')" alt="头像" />
       </div>
     </router-link>
 
@@ -19,9 +19,11 @@
       <h4 class="user-intro">{{ intro }}</h4>
     </div>
 
-    <transition name="fade">
-      <header-card-nav v-if="expend" />
-    </transition>
+    <div class="nav-wrapper">
+      <transition enter-active-class="animate__animated animate__fadeInLeft">
+        <header-card-nav v-if="expend" />
+      </transition>
+    </div>
 
     <div class="header-button" @click="handleHeaderButtonClick">
       <input
@@ -139,15 +141,21 @@ const handleHeaderButtonClick = () => {
     background-color: #999;
     overflow: hidden;
     margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     // box-shadow: 9px 9px 18px #dbdbdb, -9px -9px 18px #ffffff;
 
     img {
-      width: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
     }
   }
 
   .user-info {
     margin-left: 28px;
+    flex-shrink: 0;
 
     .user-name {
       font-weight: normal;
@@ -158,6 +166,10 @@ const handleHeaderButtonClick = () => {
       font-weight: lighter;
       font-size: 12px;
     }
+  }
+
+  .nav-wrapper {
+    overflow: hidden;
   }
 
   .header-button {

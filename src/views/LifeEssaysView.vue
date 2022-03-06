@@ -1,7 +1,5 @@
 <template>
-  <div class="life-essays-view">
-    LifeEssays
-  </div>
+  <div class="life-essays-view">LifeEssays</div>
 </template>
 
 <script setup lang="ts"></script>
@@ -12,5 +10,4 @@
   height: 300px;
   background-color: #666;
 }
-
 </style>

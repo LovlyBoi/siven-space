@@ -32,14 +32,4 @@ import MainPage from './views/MainPage.vue'
     padding-top: 10px;
   }
 }
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 300ms;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>

@@ -99,11 +99,11 @@ const picNum = ref(props.pictures.length > 4 ? 4 : props.pictures.length)
         min-width: 100%;
         min-height: 100%;
         object-fit: cover;
-        transition: transform 0.3s;
+        transition: transform 0.3s ease-in-out;
         cursor: pointer;
 
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
       }
     }

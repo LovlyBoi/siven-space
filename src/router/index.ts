@@ -1,14 +1,19 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import {useHeaderStore} from '../store'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import type {
+  RouteRecordRaw,
+  // RouteRecordRedirectOption,
+} from 'vue-router'
+import { useHeaderStore } from '../store'
 
 import AllView from '@/views/AllView.vue'
 import LifeEssaysView from '@/views/LifeEssaysView.vue'
 import NotesView from '@/views/NotesView.vue'
+import { authTokenExist } from '@/utils/auth'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/all'
+    redirect: '/all',
   },
   {
     path: '/all',
@@ -25,6 +30,32 @@ const routes: Array<RouteRecordRaw> = [
     name: 'notes',
     component: NotesView,
   },
+  {
+    path: '/edit',
+    name: 'edit',
+    // 在路由守卫中阻止页面跳转，重定向回原来的页面
+    component: {},
+    meta: {
+      never: true,
+      auth: true,
+    },
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: {},
+    meta: {
+      never: true,
+    },
+  },
+  {
+    path: '/aboutme',
+    name: 'aboutme',
+    component: {},
+    meta: {
+      never: true,
+    },
+  },
 ]
 
 const router = createRouter({
@@ -32,10 +63,16 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to) => {
+router.beforeEach((to, from) => {
+  if (to.meta.auth && !authTokenExist()) {
+    return '/login'
+  }
+  if (to.meta.never) {
+    return from
+  }
   const headerStore = useHeaderStore()
   headerStore.$patch({
-    curRoute: to.path
+    curRoute: to.path,
   })
 })
 
