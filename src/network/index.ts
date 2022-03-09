@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BASE_URL } from './config'
 import type { AxiosRequestConfig, AxiosInstance } from 'axios'
 
 class Request {
@@ -20,5 +21,5 @@ class Request {
 }
 
 export default new Request({
-  // baseURL
+  baseURL: BASE_URL
 }).instance

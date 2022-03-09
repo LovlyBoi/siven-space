@@ -7,9 +7,14 @@ export interface CardTag {
 
 export interface ContentCardProps {
   tag: CardTag
+  author: string
+  // body: string
   publishDate: Date
-  upateDate: Date
+  updateDate: Date
   title: string
   pictures: string[]
   id: number
+  meta?: {
+    [key: string]: any
+  }
 }

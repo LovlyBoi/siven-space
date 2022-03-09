@@ -5,9 +5,10 @@
         class="grid-item"
         v-for="card in cards"
         :key="card.id"
+        :author="card.author"
         :tag="card.tag"
         :publish-date="card.publishDate"
-        :upate-date="card.upateDate"
+        :update-date="card.updateDate"
         :pictures="card.pictures"
         :title="card.title"
         :id="card.id"
@@ -17,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, onMounted } from 'vue'
-import Masonry from 'masonry-layout'
+import { defineProps } from 'vue'
+// import Masonry from 'masonry-layout'
 
 import type { ContentCardProps } from '../ContentCard/type'
 import ContentCard from '../ContentCard/ContentCard.vue'
@@ -27,9 +28,11 @@ defineProps<{
   cards: ContentCardProps[]
 }>()
 
-onMounted(() => {
-  new Masonry('.masonry-grid', {})
-})
+// onMounted(() => {
+//   // console.log('asjdakjsd')
+  
+// })
+
 </script>
 
 <style lang="less" scoped>

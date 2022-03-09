@@ -6,9 +6,9 @@
 
 <script lang="ts" setup>
 import MainPage from './views/MainPage.vue'
-import useLoading from './hooks/useLoading'
+// import useLoading from './hooks/useLoading'
 
-const loading = useLoading()
+// const loading = useLoading()
 // loading.show()
 
 </script>

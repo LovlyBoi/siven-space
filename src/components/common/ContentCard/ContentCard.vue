@@ -30,11 +30,16 @@ import type { CardTag } from './type'
 
 const props = defineProps<{
   tag: CardTag
+  author: string
+  // body: string
   publishDate: Date
-  upateDate: Date
+  updateDate: Date
   title: string
   pictures: string[]
   id: number
+  meta?: {
+    [key: string]: any
+  }
 }>()
 
 const picNum = ref(props.pictures.length > 4 ? 4 : props.pictures.length)
