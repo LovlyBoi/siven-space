@@ -34,13 +34,30 @@ withDefaults(defineProps<Props>(), {
     { title: '全部', route: '/all' },
     { title: '随笔', route: '/essays' },
     { title: '笔记', route: '/notes' },
-    { title: '发布', route: '/edit' },
-    { title: '关于我', route: '/aboutme' },
+    { title: '发布', prompt: true },
+    { title: '关于我', prompt: true },
   ],
 })
 
 const handleNavItemClick = (item: NavItem) => {
-  router.push(item.route)
+  if (item.route) {
+    router.push(item.route)
+  }
+  if (item.prompt) {
+    if (item.title === '发布') {
+      loginPrompt()
+    } else if (item.title === '关于我') {
+      aboutMePrompt()
+    }
+  }
+}
+
+function loginPrompt() {
+  console.log('弹出登录弹窗')
+}
+
+function aboutMePrompt() {
+  console.log('弹出个人信息弹窗')
 }
 </script>
 

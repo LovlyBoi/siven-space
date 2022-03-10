@@ -6,3 +6,4 @@ declare module '*.vue' {
 }
 
 declare module 'masonry-layout'
+declare module '@meforma/vue-toaster'

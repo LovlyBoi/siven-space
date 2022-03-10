@@ -1,6 +1,12 @@
 import axios from 'axios'
 import { BASE_URL } from './config'
 import type { AxiosRequestConfig, AxiosInstance } from 'axios'
+import { createToaster } from '@meforma/vue-toaster'
+
+const toast = createToaster({
+  position: 'top-right',
+  duration: 2000,
+})
 
 class Request {
   instance: AxiosInstance
@@ -14,6 +20,7 @@ class Request {
       (error) => {
         console.warn(error)
         // 在这提示请求失败
+        toast.warning('好像出问题了诶！乂(ﾟДﾟ三ﾟДﾟ)乂 ')
         return error
       }
     )
@@ -21,5 +28,5 @@ class Request {
 }
 
 export default new Request({
-  baseURL: BASE_URL
+  baseURL: BASE_URL,
 }).instance

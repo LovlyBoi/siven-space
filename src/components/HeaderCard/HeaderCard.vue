@@ -6,11 +6,11 @@
       isSmallScreen ? 'full-width-card' : '',
     ]"
   >
-    <router-link to="/aboutme">
+    <a>
       <div class="avatar">
         <img :src="require('@/assets/img/avatar.jpg')" alt="头像" />
       </div>
-    </router-link>
+    </a>
 
     <div class="user-info">
       <router-link to="/">

@@ -13,3 +13,10 @@ export function getAllEssays() {
     method: 'GET'
   })
 }
+
+export function getAllNotes() {
+  return request({
+    url: 'getAllNotes',
+    method: 'GET'
+  })
+}

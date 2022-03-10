@@ -3,7 +3,11 @@
     <header class="main-page-header">
       <header-card userName="浅秋细雨" intro="智文的个人主页"></header-card>
     </header>
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
     <footer class="main-page-footer">
       <footer-bar></footer-bar>
     </footer>
