@@ -9,10 +9,11 @@
       </div>
       <div class="update-time">01 / 12</div>
     </div>
-    <div class="card-title">{{ title }}</div>
+    <div class="card-title" @click="showBlog">{{ title }}</div>
     <div class="card-pictures-wrapper" :class="[`pictures-${picNum}`]">
       <div
         class="picture"
+        @click="showBlog"
         v-for="(picUrl, index) in pictures.slice(0, 4)"
         :key="picUrl + index"
       >
@@ -25,13 +26,13 @@
 <script lang="ts" setup>
 import { ref, defineProps } from 'vue'
 
+import { useCardStore } from '@/store'
 import mapColor from './mapColor'
 import type { CardTag } from './type'
 
 const props = defineProps<{
   tag: CardTag
   author: string
-  // body: string
   publishDate: Date
   updateDate: Date
   title: string
@@ -43,6 +44,13 @@ const props = defineProps<{
 }>()
 
 const picNum = ref(props.pictures.length > 4 ? 4 : props.pictures.length)
+
+const cardStore = useCardStore()
+
+const showBlog = () => {
+  cardStore.showCardPopUp(props.id)
+}
+
 </script>
 
 <style lang="less" scoped>

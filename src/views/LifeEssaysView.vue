@@ -1,6 +1,7 @@
 <template>
   <div class="life-essays-view">
     <card-container :cards="cards" />
+    
   </div>
 </template>
 
@@ -11,15 +12,16 @@ import type { ContentCardProps } from '@/components/common/ContentCard/type'
 
 import { getAllEssays } from '@/api'
 import useMasonry from '@/hooks/useMasonry'
-import {resolveResponceData} from './utils'
+import { resolveResponceData } from './utils'
 
 const cards = ref<ContentCardProps[]>([])
 
-getAllEssays().then(async res => {
+getAllEssays().then(async (res) => {
   cards.value = resolveResponceData(res.data)
   await nextTick()
   useMasonry('.masonry-grid')
 })
+
 </script>
 
 <style lang="less" scoped>
