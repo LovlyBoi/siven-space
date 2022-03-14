@@ -7,7 +7,7 @@
         <div></div>
       </label>
       <div class="title">{{ cardData.title }}</div>
-      <div class="intro">{{ cardData.author }}</div>
+      <div class="intro">{{ cardData.author }} · {{ formatedUpdateDate }}更新</div>
       <div class="body">
         <p v-for="(paragraph, index) in cardData.body.split('\n')" :key="index">
           {{ paragraph }}
@@ -18,9 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineProps, withDefaults } from 'vue'
+import { ref, watch, defineProps, withDefaults, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCardStore } from '@/store'
+import moment from '@/utils/moment'
 
 interface Props {
   show?: boolean
@@ -81,9 +82,25 @@ watch(
     immediate: true,
   }
 )
+
+// console.log(cardData.value.updateDate)
+
+const formatedUpdateDate = computed(() =>
+  moment(cardData.value.updateDate).fromNow()
+)
 </script>
 
 <style lang="less" scoped>
+@media screen and (max-width: 638px) {
+  .pop-up {
+    padding: 0 !important;
+
+    .content {
+      width: 100vw !important;
+      padding: 60px 20px !important;
+    }
+  }
+}
 .mask {
   overflow-y: auto;
   background-color: rgba(241, 242, 249, 0.97);
@@ -103,6 +120,7 @@ watch(
     padding: 60px 70px;
     background-color: #fff;
     position: relative;
+    box-sizing: border-box;
 
     .close-toggle {
       width: 20px;

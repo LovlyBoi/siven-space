@@ -7,7 +7,7 @@
       >
         {{ tag.name }}
       </div>
-      <div class="update-time">01 / 12</div>
+      <div class="update-time">{{ formatedPublishDate }}</div>
     </div>
     <div class="card-title" @click="showBlog">{{ title }}</div>
     <div class="card-pictures-wrapper" :class="[`pictures-${picNum}`]">
@@ -24,9 +24,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps } from 'vue'
-
+import { ref, defineProps, computed } from 'vue'
 import { useCardStore } from '@/store'
+import moment from '@/utils/moment'
+
 import mapColor from './mapColor'
 import type { CardTag } from './type'
 
@@ -51,6 +52,10 @@ const showBlog = () => {
   cardStore.showCardPopUp(props.id)
 }
 
+const formatedPublishDate = computed(() =>
+  moment(props.publishDate).format('YYYY/M/DD')
+)
+// console.log(formatedPublishDate.value)
 </script>
 
 <style lang="less" scoped>
