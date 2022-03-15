@@ -1,19 +1,26 @@
 <template>
-  <div class="pop-up mask" v-if="showPopUp">
-    <div class="content">
-      <label class="close-toggle" for="close-btn">
-        <input type="checkbox" id="close-btn" v-model="inputValue" />
-        <div></div>
-        <div></div>
-      </label>
-      <div class="title">{{ cardData.title }}</div>
-      <div class="intro">{{ cardData.author }} · {{ formatedUpdateDate }}更新</div>
-      <div class="body">
-        <p v-for="(paragraph, index) in cardData.body.split('\n')" :key="index">
-          {{ paragraph }}
-        </p>
+  <div class="pop-up mask" v-show="showPopUp">
+    <transition enter-active-class="animate__animated animate__zoomIn">
+      <div class="content" v-if="showPopUp">
+        <label class="close-toggle" for="close-btn">
+          <input type="checkbox" id="close-btn" v-model="inputValue" />
+          <div></div>
+          <div></div>
+        </label>
+        <div class="title">{{ cardData.title }}</div>
+        <div class="intro">
+          {{ cardData.author }} · {{ formatedUpdateDate }}更新
+        </div>
+        <div class="body">
+          <p
+            v-for="(paragraph, index) in cardData.body.split('\n')"
+            :key="index"
+          >
+            {{ paragraph }}
+          </p>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 

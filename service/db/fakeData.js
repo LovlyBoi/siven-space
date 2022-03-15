@@ -139,7 +139,15 @@ const blogs = [
   }
 ]
 
+const users = [
+  {
+    username: 'siven',
+    password: '$2a$06$Tx5LH.EHo9ea7LprfGj.NeVSPrMUlVVNKPeFGJ6ULThUDwMsibaW2'
+  },
+]
+
 module.exports = {
   cards,
-  blogs
+  blogs,
+  users,
 }

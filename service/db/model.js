@@ -21,8 +21,15 @@ const blogSchema = new mongoose.Schema({
   body: String,
 })
 
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+})
+
 const CardModel = mongoose.model('cards', cardSchema)
 
 const BlogModel = mongoose.model('blogs', blogSchema)
 
-module.exports = { CardModel, BlogModel }
+const UserModel = mongoose.model('users', userSchema)
+
+module.exports = { CardModel, BlogModel, UserModel }

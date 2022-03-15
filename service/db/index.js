@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { CardModel, BlogModel } = require('./model')
+const { CardModel, BlogModel, UserModel } = require('./model')
 
 function connect(db = 'siven') {
   return new Promise((resolve, reject) => {
@@ -39,6 +39,7 @@ module.exports = {
   mongoose,
   CardModel,
   BlogModel,
+  UserModel,
   connect,
   create,
   find,

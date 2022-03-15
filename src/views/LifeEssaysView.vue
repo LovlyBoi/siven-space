@@ -1,7 +1,6 @@
 <template>
   <div class="life-essays-view">
     <card-container :cards="cards" />
-    
   </div>
 </template>
 
