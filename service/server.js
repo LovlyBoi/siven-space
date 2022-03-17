@@ -1,6 +1,6 @@
 const express = require('express')
 const { connect, find, BlogModel, CardModel, UserModel } = require('./db')
-const { generate, compare } = require('./auth')
+const { generate, compare, sign, verify } = require('./auth')
 
 function makeResponce(code = 200, data = '', msg = '') {
   return JSON.stringify({
@@ -74,19 +74,21 @@ app.post('/login', (req, res) => {
 
   find(UserModel, { username: username })
     .then(async (data) => {
-      if (!data[0].password) {
+      if (!data[0]?.password) {
         console.log(data)
         res.send(makeResponce(402, '', '用户未注册'))
         return
       }
       const isOk = await compare(password, data[0].password)
       if (isOk) {
-        res.send(makeResponce(200, 'token', '登陆成功'))
+        const token = sign({ username })
+        res.send(makeResponce(200, { token }, '登陆成功'))
       } else {
         res.send(makeResponce(403, '', '密码错误'))
       }
     })
     .catch((err) => {
+      console.log(err)
       res.send(makeResponce(500, err, '程序错误'))
     })
 })

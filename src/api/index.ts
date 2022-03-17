@@ -1,32 +1,16 @@
-import request from '@/network'
+import {
+  getAllCards,
+  getAllEssays,
+  getAllNotes,
+  getBlog,
+} from './blogs'
 
-export function getAllCards() {
-  return request({
-    url: '/getAllCards',
-    method: 'GET',
-  })
-}
+import { login } from './login'
 
-export function getAllEssays() {
-  return request({
-    url: '/getAllEssays',
-    method: 'GET',
-  })
-}
-
-export function getAllNotes() {
-  return request({
-    url: '/getAllNotes',
-    method: 'GET',
-  })
-}
-
-export function getBlog(id: number) {
-  return request({
-    url: '/getBlogById',
-    method: 'GET',
-    params: {
-      id,
-    },
-  })
+export {
+  getAllCards,
+  getAllEssays,
+  getAllNotes,
+  getBlog,
+  login,
 }

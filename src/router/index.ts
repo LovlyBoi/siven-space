@@ -7,6 +7,7 @@ import { useHeaderStore } from '../store'
 import AllView from '@/views/AllView.vue'
 import LifeEssaysView from '@/views/LifeEssaysView.vue'
 import NotesView from '@/views/NotesView.vue'
+import Login from '@/views/LoginView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/notes',
     name: 'notes',
     component: NotesView,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
 ]
 

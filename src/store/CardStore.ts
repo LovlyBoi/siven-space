@@ -1,11 +1,6 @@
 import { defineStore } from 'pinia'
 import { getBlog } from '@/api'
-import { createToaster } from '@meforma/vue-toaster'
-
-const toast = createToaster({
-  position: 'top-right',
-  duration: 2000,
-})
+import toast from '@/utils/toast'
 
 interface CardData {
   id: number

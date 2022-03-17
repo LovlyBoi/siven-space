@@ -1,0 +1,16 @@
+const publicKey = `MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALHI1TGOGMZB7o4KigZBxerE77JMd2X+
+tHduiCHPbzozKYRbnVhrs+FGqj6pqMeqTVNLvLZeodunBZ4lcBnr4j0CAwEAAQ==`
+
+const primiaryKey = `MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAscjVMY4YxkHujgqK
+BkHF6sTvskx3Zf60d26IIc9vOjMphFudWGuz4UaqPqmox6pNU0u8tl6h26cFniVw
+GeviPQIDAQABAkAAooDwXluESbP6WdtITm/QeMeKUW+Ts6cdTg26YS06ffa/fML6
++quVvsqGhyiLMC0VkL76Qu1ESxcMVN/jDnpBAiEA4E8xqjEB9d9/0RItj34D5ouw
+ncWRO9/qV8aeCnrs2gkCIQDK5u5cdpCCebUMPlW60rVrcEUxh+GbWW6hWLUbTaPj
+lQIgIN/acowOMn/YFscoQECCx9YvQ2BCQdk2Wjj0zqpnbikCIBY5GN5Tthw0TFoc
+8bLWpTwxPcLhCRrEvtM5LgzhghPJAiEAzOtpNRxAWMmyyviH9LAjQnrsKxXKmCKH
+H+dOlu1rlKM=`
+
+module.exports = {
+  publicKey,
+  primiaryKey,
+}

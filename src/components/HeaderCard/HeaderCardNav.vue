@@ -53,7 +53,7 @@ const handleNavItemClick = (item: NavItem) => {
 }
 
 function loginPrompt() {
-  console.log('弹出登录弹窗')
+  router.push('/login')
 }
 
 function aboutMePrompt() {
