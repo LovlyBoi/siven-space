@@ -30,9 +30,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { verifyUserInfo } from './utils'
 import { login } from '@/api'
+import { setCache } from '@/utils/cache'
 import toast from '@/utils/toast'
+
+const router = useRouter()
 
 const username = ref('')
 const password = ref('')
@@ -45,7 +49,15 @@ const handleLogin = async () => {
   const verified = verifyUserInfo(userInfo)
   console.log(verified)
   if (verified.ok) {
-    const responce = await login(userInfo)
+    const responce = await login(userInfo) as any
+    if (responce.code !== 200) {
+      toast.warning(responce.msg)
+      return
+    }
+    console.log(responce)
+    // 存储token
+    setCache('token', responce.data.token)
+    router.replace('/publish')
     console.log(responce)
   } else {
     if (verified.username !== '') {

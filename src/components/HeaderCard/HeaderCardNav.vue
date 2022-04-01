@@ -19,6 +19,7 @@ import { defineProps, withDefaults } from 'vue'
 import { useRouter } from 'vue-router'
 import { useHeaderStore, storeToRefs } from '@/store'
 
+import { authTokenExist } from '@/utils/auth'
 import type { NavItem } from './type'
 
 interface Props {
@@ -53,7 +54,10 @@ const handleNavItemClick = (item: NavItem) => {
 }
 
 function loginPrompt() {
-  router.push('/login')
+  if (!authTokenExist()) { // 如果本地没有token跳转到login
+    router.push('/login')
+  }
+  router.push('/publish')
 }
 
 function aboutMePrompt() {

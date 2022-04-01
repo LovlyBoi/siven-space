@@ -8,6 +8,7 @@ import AllView from '@/views/AllView.vue'
 import LifeEssaysView from '@/views/LifeEssaysView.vue'
 import NotesView from '@/views/NotesView.vue'
 import Login from '@/views/LoginView.vue'
+import Publish from '@/views/PublishView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,6 +34,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: Login,
+  },
+  {
+    path: '/publish',
+    name: 'publish',
+    component: Publish,
   },
 ]
 
