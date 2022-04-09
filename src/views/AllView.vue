@@ -15,12 +15,11 @@ import { resolveResponceData } from './utils'
 
 const cards = ref<ContentCardProps[]>([])
 
-getAllCards().then(async res => {
+getAllCards().then(async (res) => {
   cards.value = resolveResponceData(res.data)
   await nextTick()
   useMasonry('.masonry-grid')
 })
-
 </script>
 
 <style lang="less" scoped></style>

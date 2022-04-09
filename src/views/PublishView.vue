@@ -1,13 +1,7 @@
 <template>
-  <div class="publish-view">
-    发布页面
-  </div>
+  <div class="publish-view">发布页面</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>

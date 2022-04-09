@@ -13,16 +13,18 @@ const hitokoto = ref({})
 
 const defaultHitokoto = '即使天无雨，我亦留此地'
 
-request.request({
-  url: 'https://v1.hitokoto.cn/?c=d&c=i&c=k'
-}).then(res => {
-  // console.log(res)
-  hitokoto.value = res
-}).catch(err => {
-  console.log(err, ' err')
-  hitokoto.value = defaultHitokoto
-})
-
+request
+  .request({
+    url: 'https://v1.hitokoto.cn/?c=d&c=i&c=k',
+  })
+  .then((res) => {
+    // console.log(res)
+    hitokoto.value = res
+  })
+  .catch((err) => {
+    console.log(err, ' err')
+    hitokoto.value = defaultHitokoto
+  })
 </script>
 
 <style lang="less" scoped>

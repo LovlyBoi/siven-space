@@ -26,16 +26,13 @@ export function verifyUserInfo({
   if (username === '') {
     result.ok = false
     result.username = '需要输入用户名哦'
-  }
-  else if (/\s/.test(username)) {
+  } else if (/\s/.test(username)) {
     result.ok = false
     result.username = '用户名中不可以有空格哦'
-  }
-  else if (!/^[a-z]/i.test(username)) {
+  } else if (!/^[a-z]/i.test(username)) {
     result.ok = false
     result.username = '用户名需要以字母开头哦'
-  }
-  else if (!usernameReg.test(username)) {
+  } else if (!usernameReg.test(username)) {
     result.ok = false
     result.username = '用户名需要4~10位字母或数字哦'
   }
@@ -43,12 +40,10 @@ export function verifyUserInfo({
   if (password === '') {
     result.ok = false
     result.password = '需要输入密码呢'
-  }
-  else if (/\s/.test(password)) {
+  } else if (/\s/.test(password)) {
     result.ok = false
     result.password = '密码中不可以有空格哦'
-  }
-  else if (!passwordReg.test(password)) {
+  } else if (!passwordReg.test(password)) {
     result.ok = false
     result.password = '密码需要6~16位字母或数字哦'
   }

@@ -12,5 +12,5 @@ export default {
     this.instance.el = parentNode
     this.instance.show = show
     this.instance.hide = hide
-  }
+  },
 }

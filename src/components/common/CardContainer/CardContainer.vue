@@ -30,9 +30,7 @@ defineProps<{
 
 // onMounted(() => {
 //   // console.log('asjdakjsd')
-  
 // })
-
 </script>
 
 <style lang="less" scoped>

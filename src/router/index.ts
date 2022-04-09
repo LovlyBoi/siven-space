@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import type {
-  RouteRecordRaw,
-} from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import { useHeaderStore } from '../store'
 
 import AllView from '@/views/AllView.vue'

@@ -17,15 +17,19 @@ const { visiable } = toRefs(data)
 //   invoker()
 // })
 
-watch(visiable, (show) => {
-  if(show) {
-    // document.body.style.position = 'fixed'
-  } else {
-    // document.body.style.position = 'static'
+watch(
+  visiable,
+  (show) => {
+    if (show) {
+      // document.body.style.position = 'fixed'
+    } else {
+      // document.body.style.position = 'static'
+    }
+  },
+  {
+    immediate: true,
   }
-}, {
-  immediate: true
-})
+)
 </script>
 
 <style lang="less" scoped>

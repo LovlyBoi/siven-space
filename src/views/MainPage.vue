@@ -29,7 +29,6 @@ const cardStore = useCardStore()
 
 const { showPopUp } = storeToRefs(cardStore)
 
-
 // console.log(cardStore.showPopUp)
 </script>
 

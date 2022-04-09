@@ -49,7 +49,7 @@ const handleLogin = async () => {
   const verified = verifyUserInfo(userInfo)
   console.log(verified)
   if (verified.ok) {
-    const responce = await login(userInfo) as any
+    const responce = (await login(userInfo)) as any
     if (responce.code !== 200) {
       toast.warning(responce.msg)
       return

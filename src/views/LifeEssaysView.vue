@@ -20,7 +20,6 @@ getAllEssays().then(async (res) => {
   await nextTick()
   useMasonry('.masonry-grid')
 })
-
 </script>
 
 <style lang="less" scoped>

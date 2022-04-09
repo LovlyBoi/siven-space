@@ -6,7 +6,6 @@
 
 <script lang="ts" setup>
 import MainPage from './views/MainPage.vue'
-
 </script>
 
 <style lang="less">

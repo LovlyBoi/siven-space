@@ -9,6 +9,6 @@ export function login(userInfo: UserInfo) {
   return request({
     method: 'POST',
     url: '/login',
-    data: userInfo
+    data: userInfo,
   })
 }

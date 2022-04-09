@@ -54,7 +54,8 @@ const handleNavItemClick = (item: NavItem) => {
 }
 
 function loginPrompt() {
-  if (!authTokenExist()) { // 如果本地没有token跳转到login
+  if (!authTokenExist()) {
+    // 如果本地没有token跳转到login
     router.push('/login')
   }
   router.push('/publish')

@@ -3,9 +3,9 @@ import { defineStore } from 'pinia'
 const useHeaderStore = defineStore('headerStore', {
   state() {
     return {
-      curRoute: ''
+      curRoute: '',
     }
-  }
+  },
 })
 
 export default useHeaderStore
