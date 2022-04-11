@@ -44,6 +44,7 @@ const handleNavItemClick = (item: NavItem) => {
   if (item.route) {
     router.push(item.route)
   }
+  // 需要弹窗
   if (item.prompt) {
     if (item.title === '发布') {
       loginPrompt()
@@ -57,8 +58,9 @@ function loginPrompt() {
   if (!authTokenExist()) {
     // 如果本地没有token跳转到login
     router.push('/login')
+  } else {
+    router.push('/publish')
   }
-  router.push('/publish')
 }
 
 function aboutMePrompt() {

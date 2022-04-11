@@ -84,7 +84,7 @@ const shaking = (input: string) => {
     align-items: center;
     gap: 18px;
     width: 680px;
-    margin: 10px auto;
+    margin: 20px auto;
     padding-top: 10px;
     padding-bottom: 30px;
     border-radius: 10px;

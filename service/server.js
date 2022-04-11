@@ -1,6 +1,7 @@
 const express = require('express')
 const { connect, find, BlogModel, CardModel, UserModel } = require('./db')
 const { generate, compare, sign, verify } = require('./auth')
+const { parseMd } = require('./md2html')
 
 function makeResponce(code = 200, data = '', msg = '') {
   return JSON.stringify({
@@ -19,7 +20,7 @@ const app = express()
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello!')
+  res.send('Hello! This is Siven Space.')
 })
 
 // 查询各种博客的服务
@@ -68,15 +69,15 @@ app.post('/login', (req, res) => {
   const { username, password } = req.body
 
   if (!username || !password) {
-    res.send(makeResponce(401, '', '输入信息不全'))
+    res.send(makeResponce(401, '', '(O_o)?? 先把用户名和密码填全啊喂！'))
     return
   }
 
   find(UserModel, { username: username })
     .then(async (data) => {
       if (!data[0]?.password) {
-        console.log(data)
-        res.send(makeResponce(402, '', '用户未注册'))
+        // console.log(data)
+        res.send(makeResponce(402, '', '!?(･_･;? 用户名还没有注册哦'))
         return
       }
       const isOk = await compare(password, data[0].password)
@@ -84,13 +85,23 @@ app.post('/login', (req, res) => {
         const token = sign({ username })
         res.send(makeResponce(200, { token }, '登陆成功'))
       } else {
-        res.send(makeResponce(403, '', '密码错误'))
+        res.send(makeResponce(403, '', '（ﾟдﾟlll） 密码不对哇'))
       }
     })
     .catch((err) => {
       console.log(err)
       res.send(makeResponce(500, err, '程序错误'))
     })
+})
+
+app.get('/getArticle', (req, res) => {
+  const filename = req.query.article
+  const { html: markedString, valid } = parseMd(filename)
+  if (valid) {
+    res.send(makeResponce(200, markedString, ''))
+  } else {
+    res.send(makeResponce(500, '', 'ﾉ)ﾟДﾟ( 这篇文章跑路了'))
+  }
 })
 
 app.listen(3000, () => {

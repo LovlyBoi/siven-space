@@ -91,13 +91,20 @@ const handleHeaderButtonClick = () => {
   }
 
   .button-shrink-wrapper {
-    div:first-child {
-      transform: translateY(5px) rotate(45deg);
+    div {
+      background-color: #999 !important;
+
+      &:first-child {
+        transform: translateY(5px) rotate(45deg);
+      }
+      &:last-child {
+        transform: translateY(-5px) rotate(-45deg);
+      }
     }
-    div:last-child {
-      transform: translateY(-5px) rotate(-45deg);
-    }
+
     &:hover div {
+      background-color: #53555c !important;
+
       &:first-child {
         transform: translateY(5px);
       }
@@ -195,7 +202,7 @@ const handleHeaderButtonClick = () => {
         border-radius: 1px;
         height: 2px;
         width: 20px;
-        transition: all 100ms;
+        transition: transform 100ms;
         box-shadow: 20px 20px 60px #2f3030, -20px -20px 60px #3f4042;
       }
     }

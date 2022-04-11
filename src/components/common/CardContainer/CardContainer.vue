@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <div class="waterfall-content masonry-grid">
+    <div class="waterfall-content masonry-grid clearfix">
       <ContentCard
         class="grid-item"
         v-for="card in cards"
@@ -27,10 +27,6 @@ import ContentCard from '../ContentCard/ContentCard.vue'
 defineProps<{
   cards: ContentCardProps[]
 }>()
-
-// onMounted(() => {
-//   // console.log('asjdakjsd')
-// })
 </script>
 
 <style lang="less" scoped>
