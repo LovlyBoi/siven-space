@@ -2,7 +2,6 @@ const express = require('express')
 // const multer = require('multer')
 const { storage, loadFileWithAuth } = require('../uploader')
 const makeResponce = require('../utils/makeResponce')
-const { serverPath } = require('../config')
 
 const uploadRouter = express.Router()
 
