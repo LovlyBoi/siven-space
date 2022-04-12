@@ -22,6 +22,12 @@ class Request {
   }
 }
 
+export interface Responce {
+  code: number
+  data: any
+  msg: string
+}
+
 export default new Request({
   baseURL: BASE_URL,
 }).instance

@@ -34,6 +34,7 @@
           :limit="1"
           accept=".md"
           v-model="file"
+          :on-success="handleUploadSuccess"
         >
           <el-icon class="el-icon--upload"><upload-filled /></el-icon>
           <div class="el-upload__text">
@@ -57,6 +58,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { UploadFilled } from '@element-plus/icons-vue'
+import toast from '@/utils/toast'
+import type { Responce } from '@/network'
 
 const tagColor = [
   { value: 'yellow', label: '黄色' },
@@ -73,9 +76,18 @@ const form = reactive({
     color: '',
   },
   type: 1,
+  filePath: '',
 })
 
 const file = reactive([])
+
+const handleUploadSuccess = ({ code, data, msg }: Responce) => {
+  if (code === 200) {
+    form.filePath = data.filePath
+  } else {
+    toast.warning(msg)
+  }
+}
 </script>
 
 <style lang="less" scoped>

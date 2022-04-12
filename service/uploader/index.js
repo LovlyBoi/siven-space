@@ -1,5 +1,5 @@
 const multer = require('multer')
-const { resolve, extname } = require('path')
+const { resolve } = require('path')
 
 let fullPath = resolve(__dirname, '../md2html/md')
 //设置文件的名称
