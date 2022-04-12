@@ -29,6 +29,7 @@
       <el-form-item label="文章上传">
         <el-upload
           action="http://127.0.0.1:3000/acceptMDFile"
+          :headers="uploadHeaders()"
           class="upload-md"
           drag
           :limit="1"
@@ -59,10 +60,15 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { UploadFilled } from '@element-plus/icons-vue'
 import type { FormInstance } from 'element-plus'
-import toast from '@/utils/toast'
 import type { Responce } from '@/network'
+import toast from '@/utils/toast'
+import { getCache } from '@/utils/cache'
+import { clearToken } from '@/utils/auth'
+
+const router = useRouter()
 
 const tagColor = [
   { value: 'yellow', label: '黄色' },
@@ -82,6 +88,10 @@ const form = reactive({
   },
   type: 1,
   filePath: '',
+})
+
+const uploadHeaders = () => ({
+  Authorization: getCache('token') ?? '',
 })
 
 const formRules = {
@@ -106,6 +116,11 @@ const handleUploadSuccess = ({ code, data, msg }: Responce) => {
     form.filePath = data.filePath
   } else {
     toast.warning(msg)
+    if (code === 400) {
+      // token失效
+      clearToken()
+      router.push('/login')
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 const express = require('express')
 const { find, UserModel } = require('../db')
 const makeResponce = require('../utils/makeResponce')
-const { compare, sign } = require('../auth')
+const { compare, signToken } = require('../auth')
 
 const loginRouter = express.Router()
 
@@ -22,7 +22,7 @@ loginRouter.post('/login', (req, res) => {
       }
       const isOk = await compare(password, data[0].password)
       if (isOk) {
-        const token = sign({ username })
+        const token = signToken({ username })
         res.send(makeResponce(200, { token }, '登陆成功'))
       } else {
         res.send(makeResponce(403, '', '（ﾟдﾟlll） 密码不对哇'))

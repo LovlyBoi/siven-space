@@ -36,5 +36,5 @@ async function compare(password, cryptedPassword) {
 
 module.exports = {
   generate,
-  compare
+  compare,
 }
