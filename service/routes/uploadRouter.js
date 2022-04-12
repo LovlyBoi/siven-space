@@ -2,7 +2,6 @@ const express = require('express')
 const multer = require('multer')
 const { storage } = require('../uploader')
 const makeResponce = require('../utils/makeResponce')
-const { serverPath } = require('../config')
 
 const uploadRouter = express.Router()
 
@@ -12,7 +11,7 @@ uploadRouter.post(
   (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
     try {
-      const filePath = serverPath + '/md2html/md/' + req.file.filename
+      const filePath = '/md2html/md/' + req.file.filename
       res.send(makeResponce(200, { filePath }, '上传成功'))
     } catch {
       res.send(makeResponce(500, null, '⊙﹏⊙||| 上传失败'))

@@ -8,10 +8,10 @@
         <el-input maxlength="20" style="width: 186px" v-model="form.author" />
       </el-form-item>
       <el-form-item label="标签名" prop="tagName">
-        <el-input maxlength="20" style="width: 186px" v-model="form.tag.name" />
+        <el-input maxlength="20" style="width: 186px" v-model="form.tagName" />
       </el-form-item>
-      <el-form-item label="标签颜色" prop="tagColor">
-        <el-select v-model="form.tag.color" placeholder=" ">
+      <el-form-item label="标签颜色">
+        <el-select v-model="form.tagColor" placeholder=" ">
           <el-option
             v-for="item in tagColor"
             :key="item.value"
@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, toRaw } from 'vue'
 import { UploadFilled } from '@element-plus/icons-vue'
 import type { FormInstance } from 'element-plus'
 import toast from '@/utils/toast'
@@ -76,10 +76,8 @@ const formRef = ref<FormInstance>()
 const form = reactive({
   title: '',
   author: '',
-  tag: {
-    name: '',
-    color: 'yellow',
-  },
+  tagName: '',
+  tagColor: 'yellow',
   type: 1,
   filePath: '',
 })
@@ -94,8 +92,8 @@ const formRules = {
     { min: 2, max: 10, message: '作者名限制在2~10个字符呐', trigger: 'blur' },
   ],
   tagName: [
-    { required: true, message: '填上一个4字标签名吧', trigger: 'blur' },
-    { min: 4, max: 4, message: '标签名要4个字哦', trigger: 'blur' },
+    { required: true, message: '填上一个标签名吧', trigger: 'blur' },
+    { min: 2, max: 4, message: '标签名要2~4个字哦', trigger: 'blur' },
   ],
 }
 
@@ -115,7 +113,9 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       if (!form.filePath) {
         toast.success('先上传文章吧~')
+        return
       }
+      console.log(toRaw(form))
     } else {
       console.log('error submit!', fields)
     }
