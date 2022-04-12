@@ -8,7 +8,7 @@ const cardSchema = new mongoose.Schema({
   title: String,
   pictures: [String],
   id: Number,
-  type: Number,
+  type: Number, // 1 生活随笔，2 笔记
   meta: {},
 })
 

@@ -1,7 +1,12 @@
 const express = require('express')
+const multer = require('multer')
+const { storage } = require('./uploader')
 const { connect, find, BlogModel, CardModel, UserModel } = require('./db')
 const { generate, compare, sign, verify } = require('./auth')
 const { parseMd } = require('./md2html')
+
+const port = 3000
+const serverPath = 'http://127.0.0.1:' + port
 
 function makeResponce(code = 200, data = '', msg = '') {
   return JSON.stringify({
@@ -104,6 +109,18 @@ app.get('/getArticle', (req, res) => {
   }
 })
 
-app.listen(3000, () => {
-  console.log('3000 is listening...')
+app.post('/acceptMDFile', multer({ storage }).single('file'), (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
+  // console.log(req.file)
+  const filePath = serverPath + '/md2html/md/' + req.file.filename
+  res.send(makeResponce(200, { filePath }, '上传成功'))
+})
+
+app.options('/acceptMDFile', (_, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
+  res.send()
+})
+
+app.listen(port, () => {
+  console.log(port + ' is listening...')
 })
