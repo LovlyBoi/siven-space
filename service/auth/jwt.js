@@ -8,7 +8,12 @@ function signToken(payload, expiresIn = 60 * 60 * 24) {
 
 function verifyToken(token) {
   if (!token) return false
-  const decoded = jwt.verify(token, publicKey)
+  let decoded
+  try {
+    decoded = jwt.verify(token, publicKey)
+  } catch {
+    decoded = null
+  }
   if (!decoded) return false
   if (decoded.exp < Date.now() / 1000) return false
   return true

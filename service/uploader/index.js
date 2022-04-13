@@ -29,7 +29,6 @@ function loadFileWithAuth(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Authorization')
   const token = req.headers.authorization
   const isTokenValid = verifyToken(token)
-  console.log(isTokenValid)
   if (!isTokenValid) {
     res.send(makeResponce(400, null, '登录过期辣！'))
     next()

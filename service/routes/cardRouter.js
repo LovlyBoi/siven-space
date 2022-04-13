@@ -1,4 +1,5 @@
 const express = require('express')
+const { verifyToken } = require('../auth/jwt')
 const { find, CardModel, createBlog } = require('../db')
 const makeResponce = require('../utils/makeResponce')
 
@@ -36,6 +37,12 @@ cardRouter.get('/getAllNotes', (_, res) => {
 })
 
 cardRouter.post('/publishNewCard', (req, res) => {
+  const token = req.headers.authorization
+  const isTokenValid = verifyToken(token)
+  if (!isTokenValid) {
+    res.send(makeResponce(400, '', '登录过期辣！'))
+    return
+  }
   const card = req.body
   createBlog(card)
     .then((data) => {
