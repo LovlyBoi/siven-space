@@ -5,6 +5,7 @@ const { readFileSync, writeFile, readdirSync } = require('fs')
 const mdPath = resolve(__dirname, './md')
 const cachePath = resolve(__dirname, './cache')
 
+// name eg: test
 function parseMd(name) {
   let html = tryCache(name)
   return {

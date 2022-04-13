@@ -64,6 +64,7 @@ import { useRouter } from 'vue-router'
 import { UploadFilled } from '@element-plus/icons-vue'
 import type { FormInstance } from 'element-plus'
 import type { Responce } from '@/network'
+import { publishNewCard } from '@/api/blogs'
 import toast from '@/utils/toast'
 import { getCache } from '@/utils/cache'
 import { clearToken } from '@/utils/auth'
@@ -127,13 +128,24 @@ const handleUploadSuccess = ({ code, data, msg }: Responce) => {
 
 const handleSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => {
     if (valid) {
       if (!form.filePath) {
         toast.info('先上传文章吧~')
         return
       }
       console.log(toRaw(form))
+      const { code, msg } = (await publishNewCard(toRaw(form))) as any
+      if (code === 200) {
+        toast.success(msg)
+      } else if (code === 400) {
+        toast.warning(msg)
+        // token失效
+        clearToken()
+        router.push('/login')
+      } else {
+        toast.warning(msg)
+      }
     } else {
       console.log('error submit!', fields)
     }

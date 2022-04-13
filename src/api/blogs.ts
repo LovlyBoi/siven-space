@@ -30,3 +30,11 @@ export function getBlog(id: number) {
     },
   })
 }
+
+export function publishNewCard(blog: any) {
+  return request({
+    url: '/publishNewCard',
+    method: 'POST',
+    data: blog,
+  })
+}

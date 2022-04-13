@@ -4,7 +4,7 @@ const cards = [
       name: '旅行随笔',
       color: 'orange',
     },
-    author: '智文',
+    author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
     pictures: [
@@ -19,7 +19,7 @@ const cards = [
       name: '前端笔记',
       color: 'blueGreen',
     },
-    author: '智文',
+    author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
     pictures: [
@@ -36,7 +36,7 @@ const cards = [
       name: '生活小记',
       color: 'green',
     },
-    author: '智文',
+    author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
     pictures: [
@@ -54,7 +54,7 @@ const cards = [
       name: '生活小记',
       color: 'green',
     },
-    author: '智文',
+    author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
     pictures: [
@@ -73,7 +73,7 @@ const cards = [
       name: '生活小记',
       color: 'green',
     },
-    author: '智文',
+    author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
     pictures: [
@@ -103,7 +103,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody,
+    body: 'test1.md',
   },
   {
     id: 2,
@@ -111,7 +111,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody,
+    body: 'test1.md',
   },
   {
     id: 3,
@@ -119,7 +119,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody,
+    body: 'test1.md',
   },
   {
     id: 4,
@@ -128,7 +128,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody,
+    body: 'test1.md',
   },
   {
     id: 5,
@@ -137,7 +137,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody,
+    body: 'test1.md',
   },
 ]
 

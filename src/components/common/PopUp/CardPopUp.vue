@@ -11,14 +11,13 @@
         <div class="intro">
           {{ cardData.author }} · {{ formatedUpdateDate }}更新
         </div>
-        <div class="body">
-          <p
+        <div class="body" v-html="cardData.body"></div>
+        <!-- <p
             v-for="(paragraph, index) in cardData.body.split('\n')"
             :key="index"
           >
             {{ paragraph }}
-          </p>
-        </div>
+          </p> -->
       </div>
     </transition>
   </div>

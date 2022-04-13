@@ -1,9 +1,9 @@
 const { cards, blogs, users } = require('./fakeData')
-const { create, connect, BlogModel, UserModel } = require('./index.js')
+const { create, connect, BlogModel, UserModel, CardModel } = require('./')
 
 connect()
   .then(() => {
-    return create(UserModel, ...users)
+    return create(BlogModel, ...blogs)
   })
   .catch((err) => {
     console.warn('err ', err)
