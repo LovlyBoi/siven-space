@@ -1,18 +1,28 @@
 const express = require('express')
-const { connect } = require('./db')
+const { connect, CardModel } = require('./db')
 const {
   blogRouter,
   cardRouter,
   loginRouter,
   uploadRouter,
 } = require('./routes')
+const idMaker = require('./db/SeqIdMaker')
 const { port } = require('./config')
 
 const app = express()
 
-connect().catch((err) => {
-  console.warn(err)
-})
+connect()
+  .then(() => {
+    //  同步一下自增id值
+    CardModel.find({}, (err, data) => {
+      if (err) return
+      idMaker.setId(data.length + 1)
+      console.log('id:', idMaker.id)
+    })
+  })
+  .catch((err) => {
+    console.warn(err)
+  })
 
 app.use(express.json())
 app.use(blogRouter)

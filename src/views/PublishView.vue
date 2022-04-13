@@ -86,6 +86,9 @@ const form = reactive({
   tagColor: 'yellow',
   type: 1,
   filePath: '',
+  pictures: [],
+  publishDate: new Date(),
+  updateDate: new Date(),
 })
 
 const uploadHeaders = () => ({
@@ -127,7 +130,7 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       if (!form.filePath) {
-        toast.success('先上传文章吧~')
+        toast.info('先上传文章吧~')
         return
       }
       console.log(toRaw(form))
@@ -138,7 +141,8 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
 }
 
 const handleFoolish = () => {
-  toast.success('这是一个没有啥用的按钮，但我就是想放在这')
+  // toast.info('这是一个没有啥用的按钮，但我就是想放在这')
+  router.replace('/all')
 }
 </script>
 

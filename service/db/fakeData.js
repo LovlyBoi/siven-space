@@ -103,7 +103,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody
+    body: articleBody,
   },
   {
     id: 2,
@@ -111,7 +111,7 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody
+    body: articleBody,
   },
   {
     id: 3,
@@ -119,30 +119,32 @@ const blogs = [
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody
+    body: articleBody,
   },
   {
     id: 4,
-    title: '猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。猫是可爱的，狼是很帅的。',
+    title:
+      '猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。猫是可爱的，狼是很帅的。',
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody
+    body: articleBody,
   },
   {
     id: 5,
-    title: '你为了你的正义，我为了我的正义。猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。',
+    title:
+      '你为了你的正义，我为了我的正义。猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。猫是可爱的，狼是很帅的。就是说，孤独又可爱又帅。',
     author: '柳智文',
     publishDate: new Date(),
     updateDate: new Date(),
-    body: articleBody
-  }
+    body: articleBody,
+  },
 ]
 
 const users = [
   {
     username: 'siven',
-    password: '$2a$06$Tx5LH.EHo9ea7LprfGj.NeVSPrMUlVVNKPeFGJ6ULThUDwMsibaW2'
+    password: '$2a$06$Tx5LH.EHo9ea7LprfGj.NeVSPrMUlVVNKPeFGJ6ULThUDwMsibaW2',
   },
 ]
 

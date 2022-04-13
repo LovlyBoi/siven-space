@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "cloc": "cloc ./ --exclude-dir=node_modules --exclude-ext=json"
+    "cloc": "cloc ./ --exclude-dir=node_modules --exclude-ext=json,md"
   },
   "dependencies": {
     "@meforma/vue-toaster": "^1.3.0",
