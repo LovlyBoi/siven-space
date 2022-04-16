@@ -19,7 +19,6 @@ import { defineProps, withDefaults } from 'vue'
 import { useRouter } from 'vue-router'
 import { useHeaderStore, storeToRefs } from '@/store'
 
-import { authTokenExist } from '@/utils/auth'
 import type { NavItem } from './type'
 
 interface Props {
@@ -32,11 +31,11 @@ const { curRoute } = storeToRefs(useHeaderStore())
 
 withDefaults(defineProps<Props>(), {
   navList: () => [
-    { title: '全部', route: '/all' },
-    { title: '随笔', route: '/essays' },
-    { title: '笔记', route: '/notes' },
-    { title: '发布', prompt: true },
-    { title: '关于我', prompt: true },
+    { title: '全部', route: '/all', auth: false },
+    { title: '随笔', route: '/essays', auth: false },
+    { title: '笔记', route: '/notes', auth: false },
+    { title: '发布', route: '/publish', auth: true },
+    { title: '关于我', prompt: true, auth: true },
   ],
 })
 
@@ -44,22 +43,11 @@ const handleNavItemClick = (item: NavItem) => {
   if (item.route) {
     router.push(item.route)
   }
-  // 需要弹窗
+  // 需要弹窗，逻辑不走router
   if (item.prompt) {
-    if (item.title === '发布') {
-      loginPrompt()
-    } else if (item.title === '关于我') {
+    if (item.title === '关于我') {
       aboutMePrompt()
     }
-  }
-}
-
-function loginPrompt() {
-  if (!authTokenExist()) {
-    // 如果本地没有token跳转到login
-    router.push('/login')
-  } else {
-    router.push('/publish')
   }
 }
 

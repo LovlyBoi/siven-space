@@ -1,0 +1,98 @@
+#blog-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    cursor: text;
+    color: #142331;
+    // color: red;
+  }
+
+  h1 {
+    text-align: center;
+    padding-bottom: 0.3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    margin: 1em auto 1.2em auto;
+    font-weight: 300;
+    /*border-bottom: 1px solid #eee;*/
+  }
+
+  h1:after {
+    border-bottom: 2px dashed #9eb7ec;
+    content: '';
+    width: 100px;
+    display: block;
+    margin: 0.2em auto 0 auto;
+    height: 2px;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    padding-left: 9px;
+    line-height: 1.4;
+    border-left: 6px solid #cce5ff;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+  }
+
+  h3:before {
+    border-radius: 50%;
+    background-color: #9ed0ff;
+    content: '';
+    width: 6px;
+    display: inline-block;
+    height: 6px;
+    vertical-align: middle;
+    margin-bottom: 0.18em;
+    margin-right: 8px;
+  }
+
+  h4 {
+    font-size: 1.25em;
+  }
+
+  h4:before {
+    background-color: #9ed0ff;
+    content: '';
+    width: 6px;
+    display: inline-block;
+    height: 2px;
+    vertical-align: middle;
+    margin-bottom: 0.18em;
+    margin-right: 8px;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #777;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table {
+    margin: 0.8em 0;
+  }
+
+  li > ol,
+  li > ul {
+    margin: 0 0;
+  }
+}

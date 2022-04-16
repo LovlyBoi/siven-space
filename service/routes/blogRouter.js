@@ -10,7 +10,7 @@ blogRouter.get('/getBlogById', (req, res) => {
   find(BlogModel, { id })
     .then((blog) => {
       blog = blog[0]
-      console.log(blog)
+      // console.log(blog)
       const fullName = blog.body
       if (!fullName) {
         // console.log(fullName)

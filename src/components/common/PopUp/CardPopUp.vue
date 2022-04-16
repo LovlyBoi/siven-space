@@ -11,7 +11,12 @@
         <div class="intro">
           {{ cardData.author }} · {{ formatedUpdateDate }}更新
         </div>
-        <div class="body" v-html="cardData.body"></div>
+        <div
+          class="body"
+          id="blog-content"
+          v-html="cardData.body"
+          ref="blogRef"
+        ></div>
         <!-- <p
             v-for="(paragraph, index) in cardData.body.split('\n')"
             :key="index"
@@ -24,10 +29,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineProps, withDefaults, computed } from 'vue'
+import { ref, watch, defineProps, withDefaults, computed, nextTick } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCardStore } from '@/store'
 import moment from '@/utils/moment'
+import hljs from 'highlight.js'
+// import 'highlight.js/styles/github-dark.css'
+import 'highlight.js/styles/atom-one-light.css'
+// import { nextTick } from 'process'
 
 interface Props {
   show?: boolean
@@ -53,6 +62,19 @@ watch(
 )
 
 const showPopUp = ref(false)
+
+const blogRef = ref<HTMLElement>()
+
+watch(showPopUp, (state) => {
+  if (state) {
+    nextTick(() => {
+      console.log(state, blogRef.value)
+      blogRef.value?.querySelectorAll('code').forEach((el) => {
+        hljs.highlightElement(el as HTMLElement)
+      })
+    })
+  }
+})
 
 const close = () => {
   showPopUp.value = false
@@ -178,12 +200,12 @@ const formatedUpdateDate = computed(() =>
     .body {
       width: 100%;
       // height: 2000px;
-      background-color: #ffffff;
+      // background-color: #ffffff;
 
-      p {
-        margin: 18px 0;
-        text-indent: 32px;
-      }
+      // p {
+      //   margin: 18px 0;
+      //   text-indent: 32px;
+      // }
     }
   }
 }

@@ -46,7 +46,7 @@ cardRouter.post('/publishNewCard', (req, res) => {
   const card = req.body
   createBlog(card)
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       res.send(makeResponce(200, '', '发布成功'))
     })
     .catch((err) => {

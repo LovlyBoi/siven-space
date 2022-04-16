@@ -1,6 +1,6 @@
 const { marked } = require('marked')
 const { resolve } = require('path')
-const { readFileSync, writeFile, readdirSync } = require('fs')
+const { readFileSync, writeFile, readdirSync, unlink } = require('fs')
 
 const mdPath = resolve(__dirname, './md')
 const cachePath = resolve(__dirname, './cache')
@@ -38,14 +38,23 @@ function tryCache(name) {
 }
 
 function cacheHtml(name, html) {
-  writeFile(resolve(cachePath, name + '.html'), html, (err, msg) => {
+  writeFile(resolve(cachePath, `${name}.html`), html, (err) => {
     if (err) {
       console.log(err)
     }
-    console.log('写入缓存 ', msg)
+    console.log('写入缓存')
+  })
+}
+
+function deleteHtml(name) {
+  unlink(resolve(cachePath, `${name}.html`), (err) => {
+    if (err) {
+      console.log(err)
+    }
   })
 }
 
 module.exports = {
   parseMd,
+  deleteHtml,
 }

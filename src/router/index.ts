@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { useHeaderStore } from '../store'
+import { authTokenExist } from '@/utils/auth'
 
 import AllView from '@/views/AllView.vue'
 import LifeEssaysView from '@/views/LifeEssaysView.vue'
@@ -37,6 +38,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/publish',
     name: 'publish',
     component: Publish,
+    meta: {
+      auth: true,
+    },
   },
 ]
 
@@ -46,6 +50,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
+  if (to.meta.auth) {
+    if (!authTokenExist()) {
+      // 如果本地没有token跳转到login
+      router.push('/login')
+    }
+  }
   const headerStore = useHeaderStore()
   headerStore.$patch({
     curRoute: to.path,
