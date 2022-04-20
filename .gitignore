@@ -25,3 +25,4 @@ pnpm-debug.log*
 # 服务器 缓存的 md 和 html
 /service/md2html/md/*
 /service/md2html/cache/*
+/service/dist

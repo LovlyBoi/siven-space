@@ -28,7 +28,7 @@
       </el-form-item>
       <el-form-item label="文章上传">
         <el-upload
-          action="http://127.0.0.1:3000/acceptMDFile"
+          :action="`${BASE_URL}/acceptMDFile`"
           :headers="uploadHeaders()"
           class="upload-md"
           drag
@@ -68,6 +68,7 @@ import { publishNewCard } from '@/api/blogs'
 import toast from '@/utils/toast'
 import { getCache } from '@/utils/cache'
 import { clearToken } from '@/utils/auth'
+import { BASE_URL } from '@/network/config'
 
 const router = useRouter()
 

@@ -11,6 +11,8 @@ const { port } = require('./config')
 
 const app = express()
 
+app.use(express.static('dist'))
+
 connect()
   .then(() => {
     //  同步一下自增id值
@@ -30,9 +32,9 @@ app.use(cardRouter)
 app.use(loginRouter)
 app.use(uploadRouter)
 
-app.get('/', (_, res) => {
-  res.send('Hello! This is Siven Space.')
-})
+// app.get('/', (_, res) => {
+//   res.send('Hello! This is Siven Space.')
+// })
 
 // app.get('/getArticle', (req, res) => {
 //   const filename = req.query.article

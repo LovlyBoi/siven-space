@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'development') {
   TIME_OUT = 200000
 } else if (process.env.NODE_ENV === 'production') {
   // 生产版本 baseURL
-  BASE_URL = ''
+  BASE_URL = 'http://123.57.238.32:10086'
   TIME_OUT = 200000
 }
 
