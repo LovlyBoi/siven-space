@@ -23,7 +23,7 @@ pnpm-debug.log*
 *.sw?
 
 # 服务器 缓存的 md 和 html
-# /siven-space-service/md2html/md/*
-# /siven-space-service/md2html/cache/*
-# /siven-space-service/dist
-# /siven-space-service/img
+/siven-space-service/md2html/md/*
+/siven-space-service/md2html/cache/*
+/siven-space-service/dist
+/siven-space-service/img
