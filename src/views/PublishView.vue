@@ -20,6 +20,18 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="封面图片">
+        <el-upload
+          :action="`${BASE_URL}/acceptPic`"
+          :headers="uploadHeaders()"
+          list-type="picture-card"
+          :on-success="handleImgSuccess"
+          :on-remove="handleImgRemove"
+          :file-list="imgList"
+        >
+          <el-icon><Plus /></el-icon>
+        </el-upload>
+      </el-form-item>
       <el-form-item label="文章类型" prop="type">
         <el-select v-model="form.type" placeholder=" ">
           <el-option label="生活随笔" :value="1" />
@@ -61,8 +73,9 @@
 <script setup lang="ts">
 import { ref, reactive, toRaw } from 'vue'
 import { useRouter } from 'vue-router'
-import { UploadFilled } from '@element-plus/icons-vue'
+import { UploadFilled, Plus } from '@element-plus/icons-vue'
 import type { FormInstance } from 'element-plus'
+import type { UploadProps, UploadUserFile } from 'element-plus'
 import type { Responce } from '@/network'
 import { publishNewCard } from '@/api/blogs'
 import toast from '@/utils/toast'
@@ -81,7 +94,19 @@ const tagColor = [
 
 const formRef = ref<FormInstance>()
 
-const form = reactive({
+interface publishForm {
+  title: string
+  author: string
+  tagName: string
+  tagColor: string
+  type: 1 | 2
+  filePath: string
+  pictures: string[]
+  publishDate: Date
+  updateDate: Date
+}
+
+const form = reactive<publishForm>({
   title: '',
   author: '',
   tagName: '',
@@ -114,9 +139,41 @@ const formRules = {
 
 const file = reactive([])
 
+// 图片上传
+const imgList = ref<UploadUserFile[]>([])
+
+const handleImgRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
+  console.log(uploadFile, uploadFiles, '移除图片事件')
+}
+
+const handleImgSuccess: UploadProps['onSuccess'] = (
+  { code, data, msg },
+  uploadFile,
+  uploadFiles
+) => {
+  if (code === 200) {
+    const url =
+      process.env.NODE_ENV === 'development'
+        ? `http://127.0.0.1:10086/${data.url}`
+        : `${BASE_URL}/${data.url}`
+    form.pictures.push(url)
+    toast.success('上传成功！')
+  } else {
+    toast.warning(msg)
+    if (code === 400) {
+      // token失效
+      clearToken()
+      router.push('/login')
+    }
+  }
+  console.log(uploadFile, uploadFiles, '图片上传成功')
+}
+
+// markdown文件上传
 const handleUploadSuccess = ({ code, data, msg }: Responce) => {
   if (code === 200) {
     form.filePath = data.filePath
+    toast.success('上传成功！')
   } else {
     toast.warning(msg)
     if (code === 400) {
@@ -127,6 +184,7 @@ const handleUploadSuccess = ({ code, data, msg }: Responce) => {
   }
 }
 
+// 表单提交
 const handleSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid, fields) => {
@@ -139,6 +197,7 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
       const { code, msg } = (await publishNewCard(toRaw(form))) as any
       if (code === 200) {
         toast.success(msg)
+        router.push('/all')
       } else if (code === 400) {
         toast.warning(msg)
         // token失效

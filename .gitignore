@@ -26,3 +26,4 @@ pnpm-debug.log*
 /service/md2html/md/*
 /service/md2html/cache/*
 /service/dist
+/service/img

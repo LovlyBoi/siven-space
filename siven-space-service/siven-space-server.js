@@ -12,6 +12,7 @@ const { port } = require('./config')
 const app = express()
 
 app.use(express.static('dist'))
+app.use(express.static('img'))
 
 connect()
   .then(() => {
