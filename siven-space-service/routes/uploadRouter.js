@@ -1,13 +1,11 @@
 const express = require('express')
-const { resolve, extname } = require('path')
+const { extname } = require('path')
 const { renameSync } = require('fs')
 const { loadFileWithAuth, loadPicWithAuth, getImgHash } = require('../uploader')
 const { deleteHtml } = require('../md2html')
 const makeResponce = require('../utils/makeResponce')
 
 const uploadRouter = express.Router()
-
-// const imgStoragePath = resolve(__dirname, '../img')
 
 // markdown文件上传
 uploadRouter.options('/acceptMDFile', (_, res) => {
