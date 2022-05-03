@@ -194,7 +194,26 @@
     margin-bottom: 0;
   }
 
-  strong, b {
+  strong,
+  b {
     font-weight: 500;
+  }
+
+  :not(pre) > code {
+    margin: 0 2px;
+    padding: 2px 4px;
+    font-size: 90%;
+    border-radius: 3px;
+    background-color: #e2f0ff;
+    font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier,
+      monospace;
+  }
+
+  pre > code {
+    font-size: 14.5px;
+    border-radius: 3px;
+    line-height: 20px;
+    font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, Courier,
+      monospace;
   }
 }

@@ -69,7 +69,7 @@ watch(showPopUp, (state) => {
   if (state) {
     nextTick(() => {
       console.log(state, blogRef.value)
-      blogRef.value?.querySelectorAll('code').forEach((el) => {
+      blogRef.value?.querySelectorAll('pre > code').forEach((el) => {
         hljs.highlightElement(el as HTMLElement)
       })
     })
