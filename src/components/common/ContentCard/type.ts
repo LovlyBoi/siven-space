@@ -13,7 +13,7 @@ export interface ContentCardProps {
   updateDate: Date
   title: string
   pictures: string[]
-  id: string
+  id: number
   meta?: {
     [key: string]: any
   }

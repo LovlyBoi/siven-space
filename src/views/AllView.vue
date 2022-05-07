@@ -18,7 +18,10 @@ const cards = ref<ContentCardProps[]>([])
 getAllCards().then(async (res) => {
   cards.value = resolveResponceData(res.data)
   await nextTick()
-  useMasonry('.masonry-grid')
+  useMasonry('.masonry-grid', {
+    // columnWidth: 320,
+    itemSelector: '.grid-item',
+  })
 })
 </script>
 

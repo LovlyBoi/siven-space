@@ -111,8 +111,6 @@ watch(
   }
 )
 
-// console.log(cardData.value.updateDate)
-
 const formatedUpdateDate = computed(() =>
   moment(cardData.value.updateDate).fromNow()
 )
@@ -141,9 +139,10 @@ const formatedUpdateDate = computed(() =>
 }
 
 .pop-up {
+  box-sizing: border-box;
   padding: 50px 40px;
   .content {
-    width: 990px;
+    max-width: 990px;
     margin: 0 auto;
     padding: 60px 70px;
     background-color: #fff;

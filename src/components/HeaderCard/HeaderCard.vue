@@ -151,7 +151,6 @@ const handleHeaderButtonClick = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    // box-shadow: 9px 9px 18px #dbdbdb, -9px -9px 18px #ffffff;
 
     img {
       min-width: 100%;
