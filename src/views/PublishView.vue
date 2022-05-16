@@ -23,6 +23,7 @@
       <el-form-item label="封面图片">
         <el-upload
           :action="`${BASE_URL}/acceptPic`"
+          accept="image/*"
           :headers="uploadHeaders()"
           list-type="picture-card"
           :on-success="handleImgSuccess"
@@ -133,7 +134,7 @@ const formRules = {
   ],
   tagName: [
     { required: true, message: '填上一个标签名吧', trigger: 'blur' },
-    { min: 2, max: 4, message: '标签名要2~4个字哦', trigger: 'blur' },
+    { min: 2, max: 6, message: '标签名要2~6个字哦', trigger: 'blur' },
   ],
 }
 

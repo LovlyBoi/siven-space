@@ -34,9 +34,7 @@ import { storeToRefs } from 'pinia'
 import { useCardStore } from '@/store'
 import moment from '@/utils/moment'
 import hljs from 'highlight.js'
-// import 'highlight.js/styles/github-dark.css'
 import 'highlight.js/styles/atom-one-light.css'
-// import { nextTick } from 'process'
 
 interface Props {
   show?: boolean
@@ -100,10 +98,14 @@ watch(
   showPopUp,
   (state) => {
     if (state) {
-      // 弹出弹窗，禁用滚动
-      document.querySelector('html')?.classList.add('modal-page')
+      nextTick(() => {
+        // 弹出弹窗，禁用滚动
+        document.querySelector('html')?.classList.add('modal-page')
+      })
     } else {
-      document.querySelector('html')?.classList.remove('modal-page')
+      nextTick(() => {
+        document.querySelector('html')?.classList.remove('modal-page')
+      })
     }
   },
   {
@@ -135,7 +137,7 @@ const formatedUpdateDate = computed(() =>
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 999;
+  z-index: 998;
 }
 
 .pop-up {

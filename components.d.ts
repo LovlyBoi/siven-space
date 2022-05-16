@@ -18,7 +18,6 @@ declare module '@vue/runtime-core' {
     FooterBar: typeof import('./src/components/FooterBar/FooterBar.vue')['default']
     HeaderCard: typeof import('./src/components/HeaderCard/HeaderCard.vue')['default']
     HeaderCardNav: typeof import('./src/components/HeaderCard/HeaderCardNav.vue')['default']
-    Loading: typeof import('./src/components/common/Loading/Loading.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

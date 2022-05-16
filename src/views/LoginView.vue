@@ -135,6 +135,7 @@ const shaking = (input: string) => {
       color: #ccc;
       top: 9px;
       transition: 0.2s ease-in;
+      user-select: none;
     }
 
     #submit {
